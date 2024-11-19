@@ -1,9 +1,10 @@
 import streamlit as st
+from pytube import YouTube  # For fetching metadata from YouTube links
 
 # Set Page Configuration
 st.set_page_config(page_title="RippleXp - Keyword Optimizer", layout="centered")
 
-# Custom CSS for styling (to mimic your design)
+# Custom CSS for styling
 st.markdown("""
     <style>
     body {
@@ -68,26 +69,45 @@ st.write("### Get the right eyes on your videos, in seconds")
 st.markdown("<div class='input-container'>", unsafe_allow_html=True)
 option = st.radio("Select an input type:", ("Paste YouTube Link", "Upload Video File"))
 
+def generate_keywords(title, description):
+    # Placeholder logic for generating keywords
+    keywords = set(title.split() + description.split())
+    keywords = {word.lower() for word in keywords if len(word) > 3}  # Filter out short words
+    return sorted(keywords)
+
 if option == "Paste YouTube Link":
     video_link = st.text_input("Paste your YouTube link here:")
     if st.button("Get Started Free", key="link_button"):
         if video_link:
-            # Placeholder output for keywords
-            st.markdown(f"<div class='output-box'>", unsafe_allow_html=True)
-            st.write("**Generated Keywords:**")
-            st.write("1. viral makeup tutorial")
-            st.write("2. foundation hacks")
-            st.write("3. vegan beauty products")
-            st.markdown("</div>", unsafe_allow_html=True)
+            try:
+                # Fetch metadata using pytube
+                yt = YouTube(video_link)
+                title = yt.title
+                description = yt.description
+
+                # Generate keywords
+                keywords = generate_keywords(title, description)
+
+                # Display results
+                st.markdown(f"<div class='output-box'>", unsafe_allow_html=True)
+                st.write(f"**Title:** {title}")
+                st.write(f"**Description:** {description[:150]}...")  # Show first 150 characters
+                st.write("### Suggested Keywords:")
+                for keyword in keywords:
+                    st.write(f"- {keyword}")
+                st.markdown("</div>", unsafe_allow_html=True)
+
+            except Exception as e:
+                st.error(f"Error processing the link: {e}")
         else:
             st.warning("Please paste a valid YouTube link.")
 else:
     uploaded_file = st.file_uploader("Upload your video file here:", type=["mp4", "mov"])
     if st.button("Get Started Free", key="upload_button"):
         if uploaded_file:
-            # Placeholder output for keywords
+            # Placeholder logic for uploaded videos
             st.markdown(f"<div class='output-box'>", unsafe_allow_html=True)
-            st.write("**Generated Keywords:**")
+            st.write("**Uploaded File Keywords:**")
             st.write("1. DIY nail care")
             st.write("2. top nail polish brands")
             st.write("3. affordable nail art")
