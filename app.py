@@ -1,6 +1,5 @@
 import streamlit as st
 import random
-from streamlit.components.v1 import html
 
 # Set background style
 st.markdown(
@@ -23,9 +22,10 @@ st.markdown(
             margin-top: -15px;
         }
         .button-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            justify-items: center;
             margin-top: 20px;
         }
         .tag-button {
@@ -34,10 +34,11 @@ st.markdown(
             padding: 10px 15px;
             border: none;
             border-radius: 25px;
-            margin: 10px;
+            text-align: center;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             cursor: pointer;
             font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .tag-button:hover {
             background-color: #FF69B4;
@@ -95,11 +96,11 @@ tags = [
 ]
 random.shuffle(tags)
 
-# Tag Buttons with Improved Readability
+# Tag Buttons with Grid Layout
 st.markdown('<div class="button-container">', unsafe_allow_html=True)
 for tag in tags:
     st.markdown(
-        f'<button class="tag-button">{tag}</button>',
+        f'<div class="tag-button">{tag}</div>',
         unsafe_allow_html=True,
     )
 st.markdown("</div>", unsafe_allow_html=True)
