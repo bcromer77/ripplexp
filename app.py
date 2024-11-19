@@ -4,7 +4,7 @@ import string
 from googleapiclient.discovery import build  # YouTube Data API
 
 # Set Page Configuration
-st.set_page_config(page_title="RippleXp - Keyword Optimizer", layout="centered")
+st.set_page_config(page_title="RippleXp - Boost Video Visibility", layout="centered")
 
 # YouTube Data API Key
 API_KEY = "YOUR_YOUTUBE_API_KEY"  # Replace with your YouTube Data API key
