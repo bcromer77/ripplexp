@@ -1,85 +1,152 @@
 import streamlit as st
 
-# PAGE CONFIGURATION
+# Page Configurations
 st.set_page_config(page_title="RippleXp: Your Creator Toolkit", layout="wide")
 
-# HEADER SECTION
+# Header
 st.markdown(
     """
     <style>
-    body {
-        background-color: #fff8f8;
-        font-family: 'Inter', sans-serif;
-    }
-    .headline {
-        font-size: 3rem;
-        font-weight: bold;
-        color: #ff89a0;
-        text-align: center;
-    }
-    .subheading {
-        font-size: 1.2rem;
-        color: #444444;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    .cta-button {
-        background: linear-gradient(90deg, #ff89a0, #fcaeae);
-        border: none;
-        color: white;
-        font-size: 1.2rem;
-        padding: 12px 25px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    .cta-button:hover {
-        background: linear-gradient(90deg, #fcaeae, #ff89a0);
-        transform: scale(1.05);
-    }
+        body {
+            background-color: #fef8fc;
+            color: #333333;
+            font-family: "Arial", sans-serif;
+        }
+        h1 {
+            text-align: center;
+            color: #ff69b4;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 1.5rem;
+            font-weight: normal;
+        }
     </style>
-    """,
-    unsafe_allow_html=True,
+    """, unsafe_allow_html=True
 )
 
-st.markdown("<div class='headline'>RippleXp: Your Creator Toolkit</div>", unsafe_allow_html=True)
+st.markdown("<h1>RippleXp: Your Creator Toolkit</h1>", unsafe_allow_html=True)
 st.markdown(
-    "<div class='subheading'>Effortlessly find trends, optimize your videos, and connect with your audience like never before.</div>",
+    "<h2>Effortlessly find trends, optimize your videos, and connect with your audience like never before.</h2>",
     unsafe_allow_html=True,
 )
 
-# TRENDING TAGS SECTION
-st.markdown("### 🌟 Trending Tags: What's Hot Right Now")
+# Add a Divider
+st.markdown("<hr style='margin:20px 0; border:none; border-top:1px solid #ddd;'>", unsafe_allow_html=True)
 
-# GRID OF TRENDING TAGS
+# Video Analysis Section
+st.markdown("### 🎬 Analyze Your Video")
+st.markdown(
+    "<p style='color:#555; font-size:1rem;'>Paste your YouTube link or upload your video to generate personalized tags and insights.</p>",
+    unsafe_allow_html=True,
+)
+
+# Input Section: YouTube Link
+youtube_link = st.text_input(
+    "Insert your YouTube link here:",
+    placeholder="e.g., https://www.youtube.com/watch?v=example123",
+    help="Paste your video link here to analyze content.",
+)
+
+# Upload Section: Video File
+uploaded_file = st.file_uploader("Or upload your video file", type=["mp4", "mov", "avi"])
+
+# Submit Button
+if st.button("Submit"):
+    if youtube_link:
+        st.success(f"Analyzing YouTube link: {youtube_link}")
+    elif uploaded_file:
+        st.success("Uploading and analyzing your video...")
+    else:
+        st.error("Please provide a YouTube link or upload a video.")
+
+# Add some space
+st.markdown("<hr style='margin:20px 0; border:none; border-top:1px solid #ddd;'>", unsafe_allow_html=True)
+
+# Trending Tags Section
+st.markdown("### ✨ Trending Tags: What's Hot Right Now")
+st.markdown(
+    """
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .tag {
+            background: linear-gradient(90deg, #ffb3c1, #b5e9f8);
+            border-radius: 20px;
+            padding: 10px 15px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+        .tag:hover {
+            transform: scale(1.1);
+            background: linear-gradient(90deg, #ff69b4, #5cd3ff);
+            color: #fff;
+        }
+    </style>
+    """, unsafe_allow_html=True,
+)
+
+# Tags Grid
 tags = [
     "Eye Shadow", "Concealer", "Glossy Lipstick", "Makeup Brushes",
     "Lip Liner", "Skincare Routine", "Foundation", "Pink Blusher",
-    "Peach Blusher", "Bronzer", "Mascara", "Matte Lipstick",
-    "Eyebrow Pencil", "Red Lipstick", "Setting Powder"
+    "Peach Blusher", "Bronzer", "Red Lipstick", "Setting Powder",
+    "Mascara", "Matte Lipstick", "Eyebrow Pencil",
 ]
-cols = st.columns(4)
-for idx, tag in enumerate(tags):
-    with cols[idx % 4]:
-        st.markdown(
-            f"<div style='text-align:center; background:linear-gradient(90deg, #ffdee9, #b5fffc); "
-            f"border-radius:12px; padding:10px; margin:5px 0; color:#444; font-weight:bold;'>"
-            f"{tag}</div>",
-            unsafe_allow_html=True,
-        )
 
-# VIDEO ANALYSIS SECTION
+st.markdown('<div class="grid-container">', unsafe_allow_html=True)
+for tag in tags:
+    st.markdown(f'<div class="tag">{tag}</div>', unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
+
+# Add some space
+st.markdown("<hr style='margin:20px 0; border:none; border-top:1px solid #ddd;'>", unsafe_allow_html=True)
+
+# Discover Tools & Trends Section
 st.markdown("### 🎥 Discover Tools & Trends")
-videos = ["https://www.youtube.com/embed/k7XG0zPLF5I", "https://www.youtube.com/embed/3eXT60rbBVk"]
-cols = st.columns(2)
-for idx, video in enumerate(videos):
-    with cols[idx]:
-        st.markdown(
-            f"<iframe width='100%' height='200' src='{video}' frameborder='0' allowfullscreen></iframe>",
-            unsafe_allow_html=True,
-        )
+st.markdown(
+    """
+    <style>
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        iframe {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+        }
+    </style>
+    """, unsafe_allow_html=True,
+)
 
-# CALL TO ACTION
-st.markdown("<div style='text-align:center; margin-top:20px;'>", unsafe_allow_html=True)
-st.markdown("<button class='cta-button'>Get Started Free</button>", unsafe_allow_html=True)
-st.markdown("</div>", unsafe_allow_html=True)
+# Embed Videos
+st.markdown('<div class="video-grid">', unsafe_allow_html=True)
+st.markdown(
+    '<iframe src="https://www.youtube.com/embed/1HtL2uXYziA" frameborder="0" allowfullscreen></iframe>',
+    unsafe_allow_html=True,
+)
+st.markdown(
+    '<iframe src="https://www.youtube.com/embed/LnHoqHscTKE" frameborder="0" allowfullscreen></iframe>',
+    unsafe_allow_html=True,
+)
+st.markdown('</div>', unsafe_allow_html=True)
+
+# Footer or additional info (optional)
+st.markdown("<hr style='margin:20px 0; border:none; border-top:1px solid #ddd;'>", unsafe_allow_html=True)
+st.markdown(
+    "<p style='text-align: center; font-size: 0.9rem; color: #888;'>© 2024 RippleXp. Empowering Creators Worldwide.</p>",
+    unsafe_allow_html=True,
+)
