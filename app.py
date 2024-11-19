@@ -21,12 +21,22 @@ st.markdown(
             text-align: center;
             margin-top: -15px;
         }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        .video-container {
+            display: flex;
+            justify-content: center;
             gap: 20px;
             margin: 30px auto;
+        }
+        .video-frame {
+            width: 45%;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 30px auto;
             width: 80%;
+            padding: 10px;
         }
         .tag-button {
             background: linear-gradient(135deg, #FFB6C1, #FF69B4);
@@ -69,9 +79,20 @@ st.button("Get Started Free")
 # Discover Tools & Trends Section
 st.subheader("Discover Tools & Trends")
 
-# Carousel
-st.video("https://www.youtube.com/watch?v=RiP35vK3AG0")  # Replace with valid YouTube URL
-st.video("https://www.youtube.com/watch?v=Pe0tWjTRvEo")  # Replace with valid YouTube URL
+# Videos side by side
+st.markdown('<div class="video-container">', unsafe_allow_html=True)
+st.markdown(
+    """
+    <div class="video-frame">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/RiP35vK3AG0" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-frame">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/Pe0tWjTRvEo" frameborder="0" allowfullscreen></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+st.markdown("</div>", unsafe_allow_html=True)
 
 # Trending Tags Section
 st.subheader("🌟 Trending Tags: What's Hot Right Now")
@@ -83,11 +104,11 @@ tags = [
 ]
 random.shuffle(tags)
 
-# Tag Buttons with Grid Layout
+# Tag Buttons with Alternative Layout
 st.markdown('<div class="grid-container">', unsafe_allow_html=True)
 for tag in tags:
     st.markdown(
-        f'<button class="tag-button">{tag}</button>',
+        f'<div class="tag-button">{tag}</div>',
         unsafe_allow_html=True,
     )
 st.markdown("</div>", unsafe_allow_html=True)
