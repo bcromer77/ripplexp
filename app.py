@@ -1,80 +1,71 @@
 import streamlit as st
+import random
+from streamlit.components.v1 import html
 
-# Page Config
-st.set_page_config(
-    page_title="RippleXp: Boost Your Reach",
-    layout="wide",
-)
-
-# Header Section
+# Title Section
+st.title("RippleXp: Empower Your Reach")
 st.markdown(
-    """
-    <h1 style='text-align: center;'>RippleXp: Boost Your Reach</h1>
-    <p style='text-align: center; color: grey;'>The ultimate tool for creators to elevate their video content and grow faster.</p>
-    """,
-    unsafe_allow_html=True,
+    "### Elevate your content with tools tailored for creators. Discover insights, trends, and tags that make your videos shine."
 )
 
 # Get Started Section
-st.markdown(
-    """
-    <div style='background-color: #f8f8f8; padding: 20px; border-radius: 10px; margin-bottom: 30px;'>
-        <h3 style='text-align: center;'>Get Started</h3>
-        <p style='text-align: center; color: grey;'>Paste your YouTube link or upload a video file to get personalized tags and insights.</p>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-input_type = st.radio(
-    "Select an input type:",
-    ["Paste YouTube Link", "Upload Video File"],
-    index=0,
-)
-
+st.subheader("🎥 Get Started")
+st.write("Paste your YouTube link or upload a video file to get personalized tags and insights.")
+input_type = st.radio("Select an input type:", ("Paste YouTube Link", "Upload Video File"), horizontal=True)
 if input_type == "Paste YouTube Link":
     youtube_link = st.text_input("Paste your YouTube link here:")
 elif input_type == "Upload Video File":
-    uploaded_file = st.file_uploader("Upload your video file:")
-
+    uploaded_file = st.file_uploader("Upload your video file here:", type=["mp4", "mov", "avi"])
 st.button("Get Started Free")
 
-# Video Carousel
-st.markdown(
-    """
-    <h3 style='text-align: center;'>Discover Tools & Trends</h3>
-    <div style='display: flex; justify-content: center; gap: 20px;'>
-        <iframe width="320" height="180" src="https://www.youtube.com/embed/videoseries?list=PLdawBtq9bt_DesiPerkins" 
-        frameborder="0" allowfullscreen></iframe>
-        <iframe width="320" height="180" src="https://www.youtube.com/embed/videoseries?list=PLdawBtq9bt_WayneGoss" 
-        frameborder="0" allowfullscreen></iframe>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+# Discover Tools & Trends Section
+st.subheader("Discover Tools & Trends")
 
-# Trending Tags with Animation
+col1, col2 = st.columns(2)
+with col1:
+    st.video("https://www.youtube.com/watch?v=RiP35vK3AG0")  # Replace with a valid YouTube URL
+with col2:
+    st.video("https://www.youtube.com/watch?v=Pe0tWjTRvEo")  # Replace with a valid YouTube URL
+
+# Trending Tags Section
+st.subheader("🌟 Trending Tags: What's Hot Right Now")
+
+# Define trending tags with animations
+tags = [
+    "Mascara", "Makeup Brushes", "Setting Powder", "Eyebrow Pencil", "Concealer", "Foundation", "Matte Lipstick",
+    "Red Lipstick", "Lip Liner", "Peach Blusher", "Eye Shadow", "Glossy Lipstick", "Pink Blusher", "Skincare Routine",
+    "Bronzer"
+]
+colors = [
+    "#FFB6C1", "#FF69B4", "#FFC0CB", "#FAEBD7", "#FFD700", "#F08080", "#FFA07A", "#F4A460", "#FF7F50", "#FF6347",
+    "#FFDAB9", "#F5DEB3", "#FFFACD", "#FFE4B5", "#FFEFD5"
+]
+random.shuffle(tags)
+
+# Display tags in a dynamic, grid-like format with animations
+tag_columns = st.columns(5)
+for i, tag in enumerate(tags):
+    with tag_columns[i % 5]:
+        html(
+            f"""
+            <div style="text-align:center; margin:10px; padding:10px; background:{random.choice(colors)}; 
+                        border-radius:25px; color:white; font-size:14px; 
+                        animation: pulse 2s infinite;">
+                {tag}
+            </div>
+            <style>
+                @keyframes pulse {{
+                    0% {{ box-shadow: 0 0 5px #fff; }}
+                    50% {{ box-shadow: 0 0 20px #ff69b4; }}
+                    100% {{ box-shadow: 0 0 5px #fff; }}
+                }}
+            </style>
+            """
+        )
+
+# Footer
 st.markdown(
-    """
-    <h3 style='text-align: center;'>Trending Tags: What's Hot Right Now</h3>
-    <div style='display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; justify-items: center;'>
-        <div style="animation: pulse 2s infinite; background-color: #FFD1DC; padding: 10px 15px; border-radius: 25px;">Mascara</div>
-        <div style="animation: pulse 2s infinite; background-color: #B4E197; padding: 10px 15px; border-radius: 25px;">Skincare Routine</div>
-        <div style="animation: pulse 2s infinite; background-color: #95D7E0; padding: 10px 15px; border-radius: 25px;">Concealer</div>
-        <div style="animation: pulse 2s infinite; background-color: #F7B267; padding: 10px 15px; border-radius: 25px;">Eyeliner</div>
-        <div style="animation: pulse 2s infinite; background-color: #D4A5A5; padding: 10px 15px; border-radius: 25px;">Makeup Brushes</div>
-        <div style="animation: pulse 2s infinite; background-color: #94DAFF; padding: 10px 15px; border-radius: 25px;">Haircare Tips</div>
-        <div style="animation: pulse 2s infinite; background-color: #FFC1A1; padding: 10px 15px; border-radius: 25px;">Bronzer</div>
-        <div style="animation: pulse 2s infinite; background-color: #9AD1D4; padding: 10px 15px; border-radius: 25px;">Red Lipstick</div>
-    </div>
-    
-    <style>
-    @keyframes pulse {
-        0% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(1.1); opacity: 0.8; }
-        100% { transform: scale(1); opacity: 1; }
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
+    "<hr style='border-top: 3px solid #f7cac9; margin:20px;'>",
+    unsafe_allow_html=True
 )
+st.markdown("✨ Powered by RippleXp | Empowering Content Creators Everywhere ✨")
