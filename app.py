@@ -3,7 +3,7 @@ import streamlit as st
 # Page Configurations
 st.set_page_config(page_title="RippleXp: Your Creator Toolkit", layout="wide")
 
-# Header
+# Header Styling
 st.markdown(
     """
     <style>
@@ -20,42 +20,44 @@ st.markdown(
         }
         h2 {
             text-align: center;
-            color: #333;
+            color: #555555;
             font-size: 1.5rem;
             font-weight: normal;
         }
     </style>
-    """, unsafe_allow_html=True
+    """,
+    unsafe_allow_html=True,
 )
 
+# Main Header
 st.markdown("<h1>RippleXp: Your Creator Toolkit</h1>", unsafe_allow_html=True)
 st.markdown(
     "<h2>Effortlessly find trends, optimize your videos, and connect with your audience like never before.</h2>",
     unsafe_allow_html=True,
 )
 
-# Add a Divider
+# Divider
 st.markdown("<hr style='margin:20px 0; border:none; border-top:1px solid #ddd;'>", unsafe_allow_html=True)
 
 # Video Analysis Section
-st.markdown("### 🎬 Analyze Your Video")
+st.markdown("### 🎬 Upload Your Video and Generate Perfect Tags")
 st.markdown(
-    "<p style='color:#555; font-size:1rem;'>Paste your YouTube link or upload your video to generate personalized tags and insights.</p>",
+    "<p style='color:#555; font-size:1rem;'>Upload your video or paste your YouTube link. We’ll find the best tags for you, giving you the best chance to shine.</p>",
     unsafe_allow_html=True,
 )
 
-# Input Section: YouTube Link
+# Input Section
 youtube_link = st.text_input(
     "Insert your YouTube link here:",
     placeholder="e.g., https://www.youtube.com/watch?v=example123",
     help="Paste your video link here to analyze content.",
 )
 
-# Upload Section: Video File
+# Upload Section
 uploaded_file = st.file_uploader("Or upload your video file", type=["mp4", "mov", "avi"])
 
 # Submit Button
-if st.button("Submit"):
+if st.button("Generate Tags"):
     if youtube_link:
         st.success(f"Analyzing YouTube link: {youtube_link}")
     elif uploaded_file:
@@ -63,7 +65,7 @@ if st.button("Submit"):
     else:
         st.error("Please provide a YouTube link or upload a video.")
 
-# Add some space
+# Divider
 st.markdown("<hr style='margin:20px 0; border:none; border-top:1px solid #ddd;'>", unsafe_allow_html=True)
 
 # Trending Tags Section
@@ -74,7 +76,7 @@ st.markdown(
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
+            gap: 15px;
             margin: 20px 0;
         }
         .tag {
@@ -93,10 +95,10 @@ st.markdown(
             color: #fff;
         }
     </style>
-    """, unsafe_allow_html=True,
+    """,
+    unsafe_allow_html=True,
 )
 
-# Tags Grid
 tags = [
     "Eye Shadow", "Concealer", "Glossy Lipstick", "Makeup Brushes",
     "Lip Liner", "Skincare Routine", "Foundation", "Pink Blusher",
@@ -109,7 +111,7 @@ for tag in tags:
     st.markdown(f'<div class="tag">{tag}</div>', unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
-# Add some space
+# Divider
 st.markdown("<hr style='margin:20px 0; border:none; border-top:1px solid #ddd;'>", unsafe_allow_html=True)
 
 # Discover Tools & Trends Section
@@ -129,7 +131,8 @@ st.markdown(
             border-radius: 10px;
         }
     </style>
-    """, unsafe_allow_html=True,
+    """,
+    unsafe_allow_html=True,
 )
 
 # Embed Videos
@@ -144,7 +147,7 @@ st.markdown(
 )
 st.markdown('</div>', unsafe_allow_html=True)
 
-# Footer or additional info (optional)
+# Footer
 st.markdown("<hr style='margin:20px 0; border:none; border-top:1px solid #ddd;'>", unsafe_allow_html=True)
 st.markdown(
     "<p style='text-align: center; font-size: 0.9rem; color: #888;'>© 2024 RippleXp. Empowering Creators Worldwide.</p>",
