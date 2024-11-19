@@ -5,7 +5,7 @@ import random
 st.set_page_config(page_title="RippleXp - Boost Video Visibility", layout="centered")
 
 # Function to generate random trending tags
-def generate_trending_tags(categories, count=10):
+def generate_trending_tags(categories, count=20):
     tags = []
     for _ in range(count):
         category = random.choice(categories)
@@ -39,21 +39,21 @@ st.markdown("""
         margin-top: -10px;
         margin-bottom: 20px;
     }
-    .search-bar-container {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
+    .input-container {
+        margin: 20px auto;
+        text-align: center;
+        width: 70%;
     }
     .trending-tags {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+        justify-items: center;
+        margin: 20px auto;
     }
     .tag-button {
         display: inline-block;
-        margin: 10px 10px;
-        padding: 10px 20px;
+        padding: 10px 15px;
         color: white;
         font-weight: bold;
         border-radius: 25px;
@@ -74,14 +74,19 @@ st.markdown("""
 st.markdown("<div class='header-title'>RippleXp Boost Video Visibility</div>", unsafe_allow_html=True)
 st.markdown("<div class='sub-title'>Get the right eyes on your videos, in seconds</div>", unsafe_allow_html=True)
 
-# Search Bar
-st.markdown("<div class='search-bar-container'>", unsafe_allow_html=True)
-search_query = st.text_input("Search Trending Tags:", value="", placeholder="Enter a keyword...")
+# YouTube Input Section
+st.markdown("<div class='input-container'>", unsafe_allow_html=True)
+input_option = st.radio("Select an input type:", ["Paste YouTube Link", "Upload Video File"])
+if input_option == "Paste YouTube Link":
+    st.text_input("Paste your YouTube link here:")
+else:
+    st.file_uploader("Upload your video file here:", type=["mp4", "mov"])
+st.button("Get Started Free")
 st.markdown("</div>", unsafe_allow_html=True)
 
 # Trending Tags Section
 st.markdown("<div class='trending-tags'>", unsafe_allow_html=True)
-tags = generate_trending_tags(categories, count=15)
+tags = generate_trending_tags(categories, count=20)  # Display 20 tags
 for i, tag in enumerate(tags):
     color = button_colors[i % len(button_colors)]  # Cycle through colors
     st.markdown(
@@ -90,8 +95,3 @@ for i, tag in enumerate(tags):
         """, unsafe_allow_html=True
     )
 st.markdown("</div>", unsafe_allow_html=True)
-
-# Input Section
-st.radio("Select an input type:", ["Paste YouTube Link", "Upload Video File"])
-st.text_input("Paste your YouTube link here:")
-st.button("Get Started Free")
