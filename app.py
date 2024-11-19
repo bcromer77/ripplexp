@@ -1,132 +1,59 @@
 import streamlit as st
-import random
 
-# Set Page Configuration
-st.set_page_config(page_title="RippleXp - Boost Your Reach", layout="wide")
+# Heatmap color scale function
+def get_heatmap_color(popularity_score):
+    if popularity_score > 70:
+        return "red"
+    elif 40 <= popularity_score <= 70:
+        return "orange"
+    else:
+        return "lightgray"
 
-# Define button categories and descriptions
-categories = [
-    "Matte Lipstick", "Glossy Lipstick", "Red Lipstick", "Peach Blusher", "Bronzer", "Pink Blusher",
-    "Concealer", "Foundation", "Setting Powder", "Highlighter", "Eye Shadow", "Mascara", 
-    "Eyebrow Pencil", "Eyeliner", "Lip Liner", "Makeup Brushes", "Skincare Routine", "Haircare Tips"
+# Sample tag data with popularity scores
+tags = [
+    {"name": "Mascara", "popularity": 85},
+    {"name": "Skincare Routine", "popularity": 65},
+    {"name": "Concealer", "popularity": 45},
+    {"name": "Eyeliner", "popularity": 30},
+    {"name": "Makeup Brushes", "popularity": 75},
+    {"name": "Haircare Tips", "popularity": 50},
+    {"name": "Bronzer", "popularity": 20},
+    {"name": "Red Lipstick", "popularity": 90},
+    {"name": "Peach Blusher", "popularity": 55},
+    {"name": "Eye Shadow", "popularity": 40},
 ]
-button_colors = [
-    "#FF6F61", "#6B5B95", "#88B04B", "#F7CAC9", "#92A8D1",
-    "#F7786B", "#034F84", "#98DDDE", "#B565A7", "#009B77"
-]
 
-# YouTube Video Links for Carousel
-youtube_videos = [
-    "https://www.youtube.com/embed/Wy9Z8j5AS-c",
-    "https://www.youtube.com/embed/dQw4w9WgXcQ",
-]
+st.title("Discover Trends. Boost Video Reach.")
+st.subheader("Discover what's being said on YouTube right now!")
+st.markdown("---")
 
-# Function to generate random tags
-def generate_random_tags(categories, count=16):
-    return random.sample(categories, count)
+# Display heatmap for trending tags
+st.markdown("### Trending Tags: What's Hot Right Now")
+cols = st.columns(4)  # Display in a grid of 4 columns
 
-# Custom CSS for styling
-st.markdown("""
-    <style>
-    /* Body Styling */
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: #FDFDFD;
-    }
-    .header-title {
-        text-align: center;
-        font-size: 3rem;
-        font-weight: bold;
-        color: #333333;
-        margin-top: 20px;
-    }
-    .sub-title {
-        text-align: center;
-        font-size: 1.5rem;
-        color: #555555;
-        margin-top: -15px;
-        margin-bottom: 30px;
-    }
-    /* Carousel Styling */
-    .carousel-container {
-        display: flex;
-        justify-content: center;
-        overflow-x: scroll;
-        gap: 20px;
-        padding: 20px;
-        scroll-behavior: smooth;
-    }
-    .carousel-container iframe {
-        width: 400px;
-        height: 225px;
-        border-radius: 15px;
-        border: none;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s;
-    }
-    .carousel-container iframe:hover {
-        transform: scale(1.05);
-    }
-    /* Trending Tags Grid */
-    .trending-tags-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr); /* Create a 4-column grid */
-        gap: 20px;
-        justify-items: center;
-        margin: 30px auto;
-    }
-    .tag-button {
-        display: inline-block;
-        padding: 12px 25px;
-        color: white;
-        font-weight: bold;
-        border-radius: 50px;
-        text-align: center;
-        font-size: 1rem;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        cursor: pointer;
-        background: linear-gradient(135deg, #FF6F61, #FFA07A); /* Subtle gradient */
-        transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .tag-button:hover {
-        transform: scale(1.1);
-        box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
-    }
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .trending-tags-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-    </style>
-""", unsafe_allow_html=True)
-
-# Header
-st.markdown("<div class='header-title'>Discover Trends. Boost Video Reach.</div>", unsafe_allow_html=True)
-st.markdown("<div class='sub-title'>Discover what is being said on YouTube right now!</div>", unsafe_allow_html=True)
-
-# Carousel Section
-st.markdown("### Discover Tools & Trends")
-st.markdown("<div class='carousel-container'>", unsafe_allow_html=True)
-for video in youtube_videos:
-    st.markdown(f"<iframe src='{video}' allowfullscreen></iframe>", unsafe_allow_html=True)
-st.markdown("</div>", unsafe_allow_html=True)
-
-# YouTube Input Section
-st.markdown("### Get Started")
-st.radio("Select an input type:", ["Paste YouTube Link", "Upload Video File"])
-st.text_input("Paste your YouTube link here:")
-st.button("Analyze Video")
-
-# Trending Tags Section
-st.write("### Trending Tags: Discover What's Popular")
-st.markdown("<div class='trending-tags-grid'>", unsafe_allow_html=True)
-tags = generate_random_tags(categories, count=16)  # Display 16 tags for a 4x4 grid
 for i, tag in enumerate(tags):
-    color = button_colors[i % len(button_colors)]  # Cycle through colors
-    st.markdown(
-        f"""
-        <div class="tag-button" style="background-color: {color};">{tag}</div>
-        """, unsafe_allow_html=True
-    )
-st.markdown("</div>", unsafe_allow_html=True)
+    color = get_heatmap_color(tag["popularity"])
+    with cols[i % 4]:
+        st.markdown(
+            f"<div style='padding:10px; margin:5px; background-color:{color}; border-radius:8px; text-align:center; color:white; font-weight:bold;'>{tag['name']}</div>",
+            unsafe_allow_html=True,
+        )
+
+# Add a YouTube video carousel for inspiration
+st.markdown("### Discover Tools & Trends")
+video_urls = [
+    "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
+]
+
+for url in video_urls:
+    st.video(url)
+
+# Input section
+st.markdown("### Get Started")
+input_type = st.radio("Select an input type:", ["Paste YouTube Link", "Upload Video File"])
+if input_type == "Paste YouTube Link":
+    youtube_link = st.text_input("Paste your YouTube link here:")
+else:
+    video_file = st.file_uploader("Upload your video file here:", type=["mp4", "mov"])
+st.button("Get Started Free")
