@@ -4,20 +4,20 @@ import random
 # Set Page Configuration
 st.set_page_config(page_title="RippleXp - Discover Trends", layout="centered")
 
-# Function to generate random trending tags
-def generate_trending_tags(categories, count=20):
-    tags = []
-    for _ in range(count):
-        category = random.choice(categories)
-        tags.append(category)
-    return tags
-
-# Categories and Colors for Buttons
-categories = ["Makeup", "Haircare", "Beauty Hacks", "Skincare", "DIY Tutorials", "Trending Looks"]
+# Diverse Categories for Buttons
+categories = [
+    "Matte Lipstick", "Glossy Lipstick", "Red Lipstick", "Peach Blusher", "Bronzer", "Pink Blusher",
+    "Concealer", "Foundation", "Setting Powder", "Highlighter", "Eye Shadow", "Mascara", 
+    "Eyebrow Pencil", "Eyeliner", "Lip Liner", "Makeup Brushes", "Skincare Routine", "Haircare Tips"
+]
 button_colors = [
     "#FF6F61", "#6B5B95", "#88B04B", "#F7CAC9", "#92A8D1",
     "#F7786B", "#034F84", "#98DDDE", "#B565A7", "#009B77"
 ]
+
+# Function to generate random button labels
+def generate_random_tags(categories, count=20):
+    return random.sample(categories, count)
 
 # Custom Styling
 st.markdown("""
@@ -46,7 +46,7 @@ st.markdown("""
     }
     .trending-tags-grid {
         display: grid;
-        grid-template-columns: repeat(5, 1fr); /* Create a 5-column grid */
+        grid-template-columns: repeat(4, 1fr); /* Create a 4-column grid */
         gap: 15px;
         justify-items: center;
         margin: 20px auto;
@@ -61,11 +61,16 @@ st.markdown("""
         font-size: 1rem;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         cursor: pointer;
-        transition: transform 0.2s, box-shadow 0.2s;
+        animation: flash 1.5s infinite; /* Flashing effect */
     }
     .tag-button:hover {
         transform: scale(1.1);
         box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+    }
+    @keyframes flash {
+        0% { opacity: 1; }
+        50% { opacity: 0.7; }
+        100% { opacity: 1; }
     }
     </style>
 """, unsafe_allow_html=True)
@@ -87,7 +92,7 @@ st.markdown("</div>", unsafe_allow_html=True)
 # Trending Tags Section
 st.write("### Trending Tags: Discover What's Popular")
 st.markdown("<div class='trending-tags-grid'>", unsafe_allow_html=True)
-tags = generate_trending_tags(categories, count=20)  # Display 20 tags for a 5x4 grid
+tags = generate_random_tags(categories, count=16)  # Display 16 tags for a 4x4 grid
 for i, tag in enumerate(tags):
     color = button_colors[i % len(button_colors)]  # Cycle through colors
     st.markdown(
