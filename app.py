@@ -32,6 +32,7 @@ st.markdown(
         padding: 12px 25px;
         border-radius: 8px;
         cursor: pointer;
+        text-align: center;
         transition: all 0.3s ease;
     }
     .cta-button:hover {
@@ -80,14 +81,10 @@ youtube_link = st.text_input(
 # Upload Section
 uploaded_file = st.file_uploader("Or upload your video file", type=["mp4", "mov", "avi"])
 
-# Submit Button
-if st.button("Generate Tags"):
-    if youtube_link:
-        st.success(f"Analyzing YouTube link: {youtube_link}")
-    elif uploaded_file:
-        st.success("Uploading and analyzing your video...")
-    else:
-        st.error("Please provide a YouTube link or upload a video.")
+# "Get Started Free" Button
+st.markdown("<div style='text-align:center; margin-top:20px;'>", unsafe_allow_html=True)
+st.markdown("<button class='cta-button'>Get Started Free</button>", unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
 
 # TRENDING TAGS SECTION
 st.markdown("### 🌟 Trending Tags: What's Hot Right Now")
@@ -112,8 +109,3 @@ for idx, video in enumerate(videos):
             f"<iframe width='100%' height='300' src='{video}' frameborder='0' allowfullscreen></iframe>",
             unsafe_allow_html=True,
         )
-
-# CALL TO ACTION
-st.markdown("<div style='text-align:center; margin-top:30px;'>", unsafe_allow_html=True)
-st.markdown("<button class='cta-button'>Get Started Free</button>", unsafe_allow_html=True)
-st.markdown("</div>", unsafe_allow_html=True)
