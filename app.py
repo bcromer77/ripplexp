@@ -2,7 +2,7 @@ import streamlit as st
 import random
 
 # Set Page Configuration
-st.set_page_config(page_title="RippleXp - Boost Video Visibility", layout="centered")
+st.set_page_config(page_title="RippleXp - Stay Relevant with Precision", layout="centered")
 
 # Function to generate random trending tags
 def generate_trending_tags(categories, count=20):
@@ -44,9 +44,9 @@ st.markdown("""
         text-align: center;
         width: 70%;
     }
-    .trending-tags {
+    .trending-tags-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(4, 1fr); /* Create a 4-column grid */
         gap: 15px;
         justify-items: center;
         margin: 20px auto;
@@ -71,8 +71,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Header
-st.markdown("<div class='header-title'>RippleXp Boost Video Visibility</div>", unsafe_allow_html=True)
-st.markdown("<div class='sub-title'>Get the right eyes on your videos, in seconds</div>", unsafe_allow_html=True)
+st.markdown("<div class='header-title'>RippleXp: Stay Relevant with Precision</div>", unsafe_allow_html=True)
+st.markdown("<div class='sub-title'>Empowering creators to stay on top of trends with unparalleled accuracy</div>", unsafe_allow_html=True)
 
 # YouTube Input Section
 st.markdown("<div class='input-container'>", unsafe_allow_html=True)
@@ -85,8 +85,9 @@ st.button("Get Started Free")
 st.markdown("</div>", unsafe_allow_html=True)
 
 # Trending Tags Section
-st.markdown("<div class='trending-tags'>", unsafe_allow_html=True)
-tags = generate_trending_tags(categories, count=20)  # Display 20 tags
+st.write("### Trending Tags: Stay Relevant in the Last 24 Hours")
+st.markdown("<div class='trending-tags-grid'>", unsafe_allow_html=True)
+tags = generate_trending_tags(categories, count=16)  # Display 16 tags for a 4x4 grid
 for i, tag in enumerate(tags):
     color = button_colors[i % len(button_colors)]  # Cycle through colors
     st.markdown(
