@@ -6,7 +6,7 @@ st.markdown(
     """
     <style>
         body {
-            background-color: #FFF5F7;
+            background-color: #FFF8FA; /* Adjusted color for a softer pinkish hue */
             font-family: 'Arial', sans-serif;
         }
         .main-header {
