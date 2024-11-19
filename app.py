@@ -63,6 +63,25 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+# Input Section
+youtube_link = st.text_input(
+    "Insert your YouTube link here:",
+    placeholder="e.g., https://www.youtube.com/watch?v=example123",
+    help="Paste your video link here to analyze content.",
+)
+
+# Upload Section
+uploaded_file = st.file_uploader("Or upload your video file", type=["mp4", "mov", "avi"])
+
+# Submit Button
+if st.button("Generate Tags"):
+    if youtube_link:
+        st.success(f"Analyzing YouTube link: {youtube_link}")
+    elif uploaded_file:
+        st.success("Uploading and analyzing your video...")
+    else:
+        st.error("Please provide a YouTube link or upload a video.")
+
 # HEADER SECTION
 st.markdown("<div class='headline'>RippleXp: Your Creator Toolkit</div>", unsafe_allow_html=True)
 st.markdown(
