@@ -2,10 +2,65 @@ import streamlit as st
 import random
 from streamlit.components.v1 import html
 
-# Title Section
-st.title("RippleXp: Empower Your Reach")
+# Set background style
 st.markdown(
-    "### Elevate your content with tools tailored for creators. Discover insights, trends, and tags that make your videos shine."
+    """
+    <style>
+        body {
+            background-color: #FFF5F7;
+            font-family: 'Arial', sans-serif;
+        }
+        .main-header {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF69B4;
+            text-align: center;
+        }
+        .sub-header {
+            font-size: 1.2rem;
+            color: #333333;
+            text-align: center;
+            margin-top: -15px;
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .tag-button {
+            background-color: #FFB6C1;
+            color: #FFF;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 25px;
+            margin: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .tag-button:hover {
+            background-color: #FF69B4;
+            transform: scale(1.05);
+        }
+        .carousel-container {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .video-box {
+            width: 45%;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# Header
+st.markdown('<h1 class="main-header">RippleXp: Your Creator Toolkit</h1>', unsafe_allow_html=True)
+st.markdown(
+    '<p class="sub-header">Step into the spotlight with personalized tools, trending insights, and content magic.</p>',
+    unsafe_allow_html=True,
 )
 
 # Get Started Section
@@ -21,51 +76,40 @@ st.button("Get Started Free")
 # Discover Tools & Trends Section
 st.subheader("Discover Tools & Trends")
 
+# Carousel
+st.markdown('<div class="carousel-container">', unsafe_allow_html=True)
 col1, col2 = st.columns(2)
 with col1:
-    st.video("https://www.youtube.com/watch?v=RiP35vK3AG0")  # Replace with a valid YouTube URL
+    st.video("https://www.youtube.com/watch?v=RiP35vK3AG0")  # Replace with valid YouTube URL
 with col2:
-    st.video("https://www.youtube.com/watch?v=Pe0tWjTRvEo")  # Replace with a valid YouTube URL
+    st.video("https://www.youtube.com/watch?v=Pe0tWjTRvEo")  # Replace with valid YouTube URL
+st.markdown("</div>", unsafe_allow_html=True)
 
 # Trending Tags Section
 st.subheader("🌟 Trending Tags: What's Hot Right Now")
 
-# Define trending tags with animations
 tags = [
     "Mascara", "Makeup Brushes", "Setting Powder", "Eyebrow Pencil", "Concealer", "Foundation", "Matte Lipstick",
     "Red Lipstick", "Lip Liner", "Peach Blusher", "Eye Shadow", "Glossy Lipstick", "Pink Blusher", "Skincare Routine",
     "Bronzer"
 ]
-colors = [
-    "#FFB6C1", "#FF69B4", "#FFC0CB", "#FAEBD7", "#FFD700", "#F08080", "#FFA07A", "#F4A460", "#FF7F50", "#FF6347",
-    "#FFDAB9", "#F5DEB3", "#FFFACD", "#FFE4B5", "#FFEFD5"
-]
 random.shuffle(tags)
 
-# Display tags in a dynamic, grid-like format with animations
-tag_columns = st.columns(5)
-for i, tag in enumerate(tags):
-    with tag_columns[i % 5]:
-        html(
-            f"""
-            <div style="text-align:center; margin:10px; padding:10px; background:{random.choice(colors)}; 
-                        border-radius:25px; color:white; font-size:14px; 
-                        animation: pulse 2s infinite;">
-                {tag}
-            </div>
-            <style>
-                @keyframes pulse {{
-                    0% {{ box-shadow: 0 0 5px #fff; }}
-                    50% {{ box-shadow: 0 0 20px #ff69b4; }}
-                    100% {{ box-shadow: 0 0 5px #fff; }}
-                }}
-            </style>
-            """
-        )
+# Tag Buttons with Improved Readability
+st.markdown('<div class="button-container">', unsafe_allow_html=True)
+for tag in tags:
+    st.markdown(
+        f'<button class="tag-button">{tag}</button>',
+        unsafe_allow_html=True,
+    )
+st.markdown("</div>", unsafe_allow_html=True)
 
 # Footer
 st.markdown(
-    "<hr style='border-top: 3px solid #f7cac9; margin:20px;'>",
-    unsafe_allow_html=True
+    "<hr style='border-top: 3px solid #ff69b4; margin:20px;'>",
+    unsafe_allow_html=True,
 )
-st.markdown("✨ Powered by RippleXp | Empowering Content Creators Everywhere ✨")
+st.markdown(
+    "<p style='text-align:center; color:#FF69B4;'>✨ Powered by RippleXp | Empowering Content Creators Everywhere ✨</p>",
+    unsafe_allow_html=True,
+)
