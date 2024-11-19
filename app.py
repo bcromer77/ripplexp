@@ -1,6 +1,5 @@
 import streamlit as st
 import random
-import string
 from googleapiclient.discovery import build  # YouTube Data API
 
 # Set Page Configuration
@@ -36,7 +35,7 @@ def fetch_video_metadata(video_id):
 
 # Function to generate unique tags
 def generate_unique_tag():
-    unique_tag = ''.join(random.choices(string.ascii_letters + string.digits, k=20))
+    unique_tag = ''.join(random.choices("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", k=10))
     return unique_tag
 
 # Function to create a script with unique word combinations
@@ -47,7 +46,6 @@ def create_script(title, description):
 
 # Function to monitor SERP features (Placeholder for now)
 def monitor_serp(video_url):
-    # Placeholder logic to simulate SERP monitoring
     serp_data = {
         "Video Carousel": "Not Found",
         "Shopping Feeds": "Not Applicable",
@@ -57,9 +55,46 @@ def monitor_serp(video_url):
     }
     return serp_data
 
+# Function to generate random trending tags
+def generate_trending_tags(categories, count=10):
+    tags = []
+    for _ in range(count):
+        category = random.choice(categories)
+        tags.append(category)
+    return tags
+
+# List of Categories for Trending Tags
+categories = ["Makeup", "Haircare", "Beauty Hacks", "Skincare", "DIY Tutorials", "Trending Looks"]
+
+# Colors for Buttons
+button_colors = ["#FF5733", "#33FF57", "#3357FF", "#FFC300", "#DAF7A6", "#C70039"]
+
 # Main Content
 st.title("RippleXp Boost Video Visibility")
 st.write("### Get the right eyes on your videos, in seconds")
+
+# Trending Tags Section
+st.write("## Trending Tags - Makeup & Haircare")
+st.write("### See what's trending in the last 24 hours")
+tags = generate_trending_tags(categories, count=15)
+for i, tag in enumerate(tags):
+    color = button_colors[i % len(button_colors)]  # Cycle through colors
+    st.markdown(
+        f"""
+        <div style="
+            display:inline-block;
+            margin: 5px;
+            padding: 10px 20px;
+            color: white;
+            background-color: {color};
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;">
+            {tag}
+        </div>
+        """, unsafe_allow_html=True
+    )
 
 # Input Section
 option = st.radio("Select an input type:", ("Paste YouTube Link", "Upload Video File"))
