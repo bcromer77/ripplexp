@@ -1,7 +1,7 @@
 import streamlit as st
 import random
 
-# Set background style
+# Set background and styles
 st.markdown(
     """
     <style>
