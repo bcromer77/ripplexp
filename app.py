@@ -1,125 +1,85 @@
 import streamlit as st
-import random
 
-# Set background and styles
+# PAGE CONFIGURATION
+st.set_page_config(page_title="RippleXp: Your Creator Toolkit", layout="wide")
+
+# HEADER SECTION
 st.markdown(
     """
     <style>
-        body {
-            background-color: #FFF8FA; /* Adjusted color for a softer pinkish hue */
-            font-family: 'Arial', sans-serif;
-        }
-        .main-header {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #FF69B4;
-            text-align: center;
-        }
-        .sub-header {
-            font-size: 1.2rem;
-            color: #333333;
-            text-align: center;
-            margin-top: -15px;
-        }
-        .video-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px auto;
-        }
-        .video-frame {
-            flex: 1;
-            max-width: 45%;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 30px auto;
-            width: 80%;
-            padding: 10px;
-        }
-        .tag-button {
-            background: linear-gradient(135deg, #FFB6C1, #FF69B4);
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            text-align: center;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-        }
-        .tag-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
-        }
+    body {
+        background-color: #fff8f8;
+        font-family: 'Inter', sans-serif;
+    }
+    .headline {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #ff89a0;
+        text-align: center;
+    }
+    .subheading {
+        font-size: 1.2rem;
+        color: #444444;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .cta-button {
+        background: linear-gradient(90deg, #ff89a0, #fcaeae);
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        padding: 12px 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .cta-button:hover {
+        background: linear-gradient(90deg, #fcaeae, #ff89a0);
+        transform: scale(1.05);
+    }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-# Header
-st.markdown('<h1 class="main-header">RippleXp: Your Creator Toolkit</h1>', unsafe_allow_html=True)
+st.markdown("<div class='headline'>RippleXp: Your Creator Toolkit</div>", unsafe_allow_html=True)
 st.markdown(
-    '<p class="sub-header">Step into the spotlight with personalized tools, trending insights, and content magic.</p>',
+    "<div class='subheading'>Effortlessly find trends, optimize your videos, and connect with your audience like never before.</div>",
     unsafe_allow_html=True,
 )
 
-# Get Started Section
-st.subheader("🎥 Get Started")
-st.write("Paste your YouTube link or upload a video file to get personalized tags and insights.")
-input_type = st.radio("Select an input type:", ("Paste YouTube Link", "Upload Video File"), horizontal=True)
-if input_type == "Paste YouTube Link":
-    youtube_link = st.text_input("Paste your YouTube link here:")
-elif input_type == "Upload Video File":
-    uploaded_file = st.file_uploader("Upload your video file here:", type=["mp4", "mov", "avi"])
-st.button("Get Started Free")
+# TRENDING TAGS SECTION
+st.markdown("### 🌟 Trending Tags: What's Hot Right Now")
 
-# Discover Tools & Trends Section
-st.subheader("Discover Tools & Trends")
-
-# Videos side by side
-st.markdown('<div class="video-container">', unsafe_allow_html=True)
-st.markdown(
-    """
-    <div class="video-frame">
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/RiP35vK3AG0" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <div class="video-frame">
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/Pe0tWjTRvEo" frameborder="0" allowfullscreen></iframe>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-st.markdown("</div>", unsafe_allow_html=True)
-
-# Trending Tags Section
-st.subheader("🌟 Trending Tags: What's Hot Right Now")
-
+# GRID OF TRENDING TAGS
 tags = [
-    "Mascara", "Makeup Brushes", "Setting Powder", "Eyebrow Pencil", "Concealer", "Foundation", "Matte Lipstick",
-    "Red Lipstick", "Lip Liner", "Peach Blusher", "Eye Shadow", "Glossy Lipstick", "Pink Blusher", "Skincare Routine",
-    "Bronzer"
+    "Eye Shadow", "Concealer", "Glossy Lipstick", "Makeup Brushes",
+    "Lip Liner", "Skincare Routine", "Foundation", "Pink Blusher",
+    "Peach Blusher", "Bronzer", "Mascara", "Matte Lipstick",
+    "Eyebrow Pencil", "Red Lipstick", "Setting Powder"
 ]
-random.shuffle(tags)
+cols = st.columns(4)
+for idx, tag in enumerate(tags):
+    with cols[idx % 4]:
+        st.markdown(
+            f"<div style='text-align:center; background:linear-gradient(90deg, #ffdee9, #b5fffc); "
+            f"border-radius:12px; padding:10px; margin:5px 0; color:#444; font-weight:bold;'>"
+            f"{tag}</div>",
+            unsafe_allow_html=True,
+        )
 
-# Tag Buttons with Alternative Layout
-st.markdown('<div class="grid-container">', unsafe_allow_html=True)
-for tag in tags:
-    st.markdown(
-        f'<div class="tag-button">{tag}</div>',
-        unsafe_allow_html=True,
-    )
+# VIDEO ANALYSIS SECTION
+st.markdown("### 🎥 Discover Tools & Trends")
+videos = ["https://www.youtube.com/embed/k7XG0zPLF5I", "https://www.youtube.com/embed/3eXT60rbBVk"]
+cols = st.columns(2)
+for idx, video in enumerate(videos):
+    with cols[idx]:
+        st.markdown(
+            f"<iframe width='100%' height='200' src='{video}' frameborder='0' allowfullscreen></iframe>",
+            unsafe_allow_html=True,
+        )
+
+# CALL TO ACTION
+st.markdown("<div style='text-align:center; margin-top:20px;'>", unsafe_allow_html=True)
+st.markdown("<button class='cta-button'>Get Started Free</button>", unsafe_allow_html=True)
 st.markdown("</div>", unsafe_allow_html=True)
-
-# Footer
-st.markdown(
-    "<hr style='border-top: 3px solid #ff69b4; margin:20px;'>",
-    unsafe_allow_html=True,
-)
-st.markdown(
-    "<p style='text-align:center; color:#FF69B4;'>✨ Powered by RippleXp | Empowering Content Creators Everywhere ✨</p>",
-    unsafe_allow_html=True,
-)
