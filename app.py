@@ -15,16 +15,14 @@ button_colors = [
     "#F7786B", "#034F84", "#98DDDE", "#B565A7", "#009B77"
 ]
 
-# Carousel Images
-carousel_images = [
-    "https://via.placeholder.com/300x150.png?text=Makeup+Carousel+1",
-    "https://via.placeholder.com/300x150.png?text=Makeup+Carousel+2",
-    "https://via.placeholder.com/300x150.png?text=Makeup+Carousel+3",
-    "https://via.placeholder.com/300x150.png?text=Makeup+Carousel+4",
+# YouTube Video Links for Carousel
+youtube_videos = [
+    "https://www.youtube.com/embed/Wy9Z8j5AS-c",
+    "https://www.youtube.com/embed/dQw4w9WgXcQ",
 ]
 
 # Function to generate random tags
-def generate_random_tags(categories, count=20):
+def generate_random_tags(categories, count=16):
     return random.sample(categories, count)
 
 # Custom CSS for styling
@@ -50,22 +48,24 @@ st.markdown("""
         margin-bottom: 30px;
     }
     /* Carousel Styling */
-    .carousel {
+    .carousel-container {
         display: flex;
         justify-content: center;
-        overflow-x: auto;
+        overflow-x: scroll;
         gap: 20px;
+        padding: 20px;
         scroll-behavior: smooth;
     }
-    .carousel img {
-        width: 300px;
-        height: 150px;
+    .carousel-container iframe {
+        width: 400px;
+        height: 225px;
         border-radius: 15px;
+        border: none;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s;
     }
-    .carousel img:hover {
-        transform: scale(1.1);
+    .carousel-container iframe:hover {
+        transform: scale(1.05);
     }
     /* Trending Tags Grid */
     .trending-tags-grid {
@@ -102,14 +102,14 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Header
-st.markdown("<div class='header-title'>RippleXp: Boost Your Reach</div>", unsafe_allow_html=True)
-st.markdown("<div class='sub-title'>The ultimate tool for creators to elevate their video content and grow faster.</div>", unsafe_allow_html=True)
+st.markdown("<div class='header-title'>Discover Trends. Boost Video Reach.</div>", unsafe_allow_html=True)
+st.markdown("<div class='sub-title'>Discover what is being said on YouTube right now!</div>", unsafe_allow_html=True)
 
 # Carousel Section
 st.markdown("### Discover Tools & Trends")
-st.markdown("<div class='carousel'>", unsafe_allow_html=True)
-for image in carousel_images:
-    st.markdown(f"<img src='{image}' alt='Carousel Image'>", unsafe_allow_html=True)
+st.markdown("<div class='carousel-container'>", unsafe_allow_html=True)
+for video in youtube_videos:
+    st.markdown(f"<iframe src='{video}' allowfullscreen></iframe>", unsafe_allow_html=True)
 st.markdown("</div>", unsafe_allow_html=True)
 
 # YouTube Input Section
@@ -119,7 +119,7 @@ st.text_input("Paste your YouTube link here:")
 st.button("Analyze Video")
 
 # Trending Tags Section
-st.write("### Trending Tags: What’s Hot Right Now")
+st.write("### Trending Tags: Discover What's Popular")
 st.markdown("<div class='trending-tags-grid'>", unsafe_allow_html=True)
 tags = generate_random_tags(categories, count=16)  # Display 16 tags for a 4x4 grid
 for i, tag in enumerate(tags):
