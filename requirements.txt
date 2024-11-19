@@ -2,3 +2,4 @@ streamlit
 transformers
 google-api-python-client
 pandas
+pytube
