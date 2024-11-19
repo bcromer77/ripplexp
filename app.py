@@ -1,59 +1,80 @@
 import streamlit as st
 
-# Heatmap color scale function
-def get_heatmap_color(popularity_score):
-    if popularity_score > 70:
-        return "red"
-    elif 40 <= popularity_score <= 70:
-        return "orange"
-    else:
-        return "lightgray"
+# Page Config
+st.set_page_config(
+    page_title="RippleXp: Boost Your Reach",
+    layout="wide",
+)
 
-# Sample tag data with popularity scores
-tags = [
-    {"name": "Mascara", "popularity": 85},
-    {"name": "Skincare Routine", "popularity": 65},
-    {"name": "Concealer", "popularity": 45},
-    {"name": "Eyeliner", "popularity": 30},
-    {"name": "Makeup Brushes", "popularity": 75},
-    {"name": "Haircare Tips", "popularity": 50},
-    {"name": "Bronzer", "popularity": 20},
-    {"name": "Red Lipstick", "popularity": 90},
-    {"name": "Peach Blusher", "popularity": 55},
-    {"name": "Eye Shadow", "popularity": 40},
-]
+# Header Section
+st.markdown(
+    """
+    <h1 style='text-align: center;'>RippleXp: Boost Your Reach</h1>
+    <p style='text-align: center; color: grey;'>The ultimate tool for creators to elevate their video content and grow faster.</p>
+    """,
+    unsafe_allow_html=True,
+)
 
-st.title("Discover Trends. Boost Video Reach.")
-st.subheader("Discover what's being said on YouTube right now!")
-st.markdown("---")
+# Get Started Section
+st.markdown(
+    """
+    <div style='background-color: #f8f8f8; padding: 20px; border-radius: 10px; margin-bottom: 30px;'>
+        <h3 style='text-align: center;'>Get Started</h3>
+        <p style='text-align: center; color: grey;'>Paste your YouTube link or upload a video file to get personalized tags and insights.</p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
-# Display heatmap for trending tags
-st.markdown("### Trending Tags: What's Hot Right Now")
-cols = st.columns(4)  # Display in a grid of 4 columns
+input_type = st.radio(
+    "Select an input type:",
+    ["Paste YouTube Link", "Upload Video File"],
+    index=0,
+)
 
-for i, tag in enumerate(tags):
-    color = get_heatmap_color(tag["popularity"])
-    with cols[i % 4]:
-        st.markdown(
-            f"<div style='padding:10px; margin:5px; background-color:{color}; border-radius:8px; text-align:center; color:white; font-weight:bold;'>{tag['name']}</div>",
-            unsafe_allow_html=True,
-        )
-
-# Add a YouTube video carousel for inspiration
-st.markdown("### Discover Tools & Trends")
-video_urls = [
-    "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "https://www.youtube.com/watch?v=3JZ_D3ELwOQ",
-]
-
-for url in video_urls:
-    st.video(url)
-
-# Input section
-st.markdown("### Get Started")
-input_type = st.radio("Select an input type:", ["Paste YouTube Link", "Upload Video File"])
 if input_type == "Paste YouTube Link":
     youtube_link = st.text_input("Paste your YouTube link here:")
-else:
-    video_file = st.file_uploader("Upload your video file here:", type=["mp4", "mov"])
+elif input_type == "Upload Video File":
+    uploaded_file = st.file_uploader("Upload your video file:")
+
 st.button("Get Started Free")
+
+# Video Carousel
+st.markdown(
+    """
+    <h3 style='text-align: center;'>Discover Tools & Trends</h3>
+    <div style='display: flex; justify-content: center; gap: 20px;'>
+        <iframe width="320" height="180" src="https://www.youtube.com/embed/videoseries?list=PLdawBtq9bt_DesiPerkins" 
+        frameborder="0" allowfullscreen></iframe>
+        <iframe width="320" height="180" src="https://www.youtube.com/embed/videoseries?list=PLdawBtq9bt_WayneGoss" 
+        frameborder="0" allowfullscreen></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+# Trending Tags with Animation
+st.markdown(
+    """
+    <h3 style='text-align: center;'>Trending Tags: What's Hot Right Now</h3>
+    <div style='display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; justify-items: center;'>
+        <div style="animation: pulse 2s infinite; background-color: #FFD1DC; padding: 10px 15px; border-radius: 25px;">Mascara</div>
+        <div style="animation: pulse 2s infinite; background-color: #B4E197; padding: 10px 15px; border-radius: 25px;">Skincare Routine</div>
+        <div style="animation: pulse 2s infinite; background-color: #95D7E0; padding: 10px 15px; border-radius: 25px;">Concealer</div>
+        <div style="animation: pulse 2s infinite; background-color: #F7B267; padding: 10px 15px; border-radius: 25px;">Eyeliner</div>
+        <div style="animation: pulse 2s infinite; background-color: #D4A5A5; padding: 10px 15px; border-radius: 25px;">Makeup Brushes</div>
+        <div style="animation: pulse 2s infinite; background-color: #94DAFF; padding: 10px 15px; border-radius: 25px;">Haircare Tips</div>
+        <div style="animation: pulse 2s infinite; background-color: #FFC1A1; padding: 10px 15px; border-radius: 25px;">Bronzer</div>
+        <div style="animation: pulse 2s infinite; background-color: #9AD1D4; padding: 10px 15px; border-radius: 25px;">Red Lipstick</div>
+    </div>
+    
+    <style>
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.1); opacity: 0.8; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
