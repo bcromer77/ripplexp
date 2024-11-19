@@ -21,36 +21,28 @@ st.markdown(
             text-align: center;
             margin-top: -15px;
         }
-        .button-container {
+        .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            justify-items: center;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin: 30px auto;
+            width: 80%;
         }
         .tag-button {
-            background-color: #FFB6C1;
-            color: #FFF;
-            padding: 10px 15px;
+            background: linear-gradient(135deg, #FFB6C1, #FF69B4);
+            color: white;
+            padding: 10px;
             border: none;
-            border-radius: 25px;
+            border-radius: 20px;
+            font-size: 0.9rem;
             text-align: center;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: all 0.3s ease-in-out;
         }
         .tag-button:hover {
-            background-color: #FF69B4;
             transform: scale(1.05);
-        }
-        .carousel-container {
-            display: flex;
-            justify-content: space-around;
-            padding: 20px;
-        }
-        .video-box {
-            width: 45%;
+            box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
         }
     </style>
     """,
@@ -78,13 +70,8 @@ st.button("Get Started Free")
 st.subheader("Discover Tools & Trends")
 
 # Carousel
-st.markdown('<div class="carousel-container">', unsafe_allow_html=True)
-col1, col2 = st.columns(2)
-with col1:
-    st.video("https://www.youtube.com/watch?v=RiP35vK3AG0")  # Replace with valid YouTube URL
-with col2:
-    st.video("https://www.youtube.com/watch?v=Pe0tWjTRvEo")  # Replace with valid YouTube URL
-st.markdown("</div>", unsafe_allow_html=True)
+st.video("https://www.youtube.com/watch?v=RiP35vK3AG0")  # Replace with valid YouTube URL
+st.video("https://www.youtube.com/watch?v=Pe0tWjTRvEo")  # Replace with valid YouTube URL
 
 # Trending Tags Section
 st.subheader("🌟 Trending Tags: What's Hot Right Now")
@@ -97,10 +84,10 @@ tags = [
 random.shuffle(tags)
 
 # Tag Buttons with Grid Layout
-st.markdown('<div class="button-container">', unsafe_allow_html=True)
+st.markdown('<div class="grid-container">', unsafe_allow_html=True)
 for tag in tags:
     st.markdown(
-        f'<div class="tag-button">{tag}</div>',
+        f'<button class="tag-button">{tag}</button>',
         unsafe_allow_html=True,
     )
 st.markdown("</div>", unsafe_allow_html=True)
