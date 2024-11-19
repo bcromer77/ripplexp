@@ -58,7 +58,7 @@ def monitor_serp(video_url):
     return serp_data
 
 # Main Content
-st.title("RippleXp Keyword Optimizer")
+st.title("RippleXp Boost Video Visibility")
 st.write("### Get the right eyes on your videos, in seconds")
 
 # Input Section
