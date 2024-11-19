@@ -60,6 +60,26 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# Function to validate and extract YouTube video ID
+def extract_video_id(video_url):
+    # Check if it's a valid YouTube video URL
+    if "youtube.com/watch" in video_url:
+        video_id = video_url.split("v=")[-1]
+        if "&" in video_id:  # Remove extra parameters
+            video_id = video_id.split("&")[0]
+        return video_id
+    elif "youtu.be/" in video_url:
+        return video_url.split("youtu.be/")[-1]
+    else:
+        raise ValueError("Invalid YouTube video link. Please provide a direct video URL.")
+
+# Function to generate keywords from title and description
+def generate_keywords(title, description):
+    # Placeholder logic for generating keywords
+    keywords = set(title.split() + description.split())
+    keywords = {word.lower() for word in keywords if len(word) > 3}  # Filter out short words
+    return sorted(keywords)
+
 # Main Content
 st.markdown("<div class='main-container'>", unsafe_allow_html=True)
 st.title("RippleXp Keyword Optimizer")
@@ -69,19 +89,16 @@ st.write("### Get the right eyes on your videos, in seconds")
 st.markdown("<div class='input-container'>", unsafe_allow_html=True)
 option = st.radio("Select an input type:", ("Paste YouTube Link", "Upload Video File"))
 
-def generate_keywords(title, description):
-    # Placeholder logic for generating keywords
-    keywords = set(title.split() + description.split())
-    keywords = {word.lower() for word in keywords if len(word) > 3}  # Filter out short words
-    return sorted(keywords)
-
 if option == "Paste YouTube Link":
     video_link = st.text_input("Paste your YouTube link here:")
     if st.button("Get Started Free", key="link_button"):
         if video_link:
             try:
-                # Fetch metadata using pytube
-                yt = YouTube(video_link)
+                # Extract video ID
+                video_id = extract_video_id(video_link)
+                
+                # Fetch metadata using video_id (use pytube or YouTube Data API)
+                yt = YouTube(f"https://www.youtube.com/watch?v={video_id}")
                 title = yt.title
                 description = yt.description
 
@@ -97,6 +114,8 @@ if option == "Paste YouTube Link":
                     st.write(f"- {keyword}")
                 st.markdown("</div>", unsafe_allow_html=True)
 
+            except ValueError as ve:
+                st.error(f"Error: {ve}")
             except Exception as e:
                 st.error(f"Error processing the link: {e}")
         else:
@@ -119,3 +138,4 @@ st.markdown("</div>", unsafe_allow_html=True)
 
 # Footer
 st.markdown("<div class='footer'>Powered by RippleXp | Optimizing content for creators</div>", unsafe_allow_html=True)
+
