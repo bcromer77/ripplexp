@@ -63,6 +63,13 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+# HEADER SECTION
+st.markdown("<div class='headline'>RippleXp: Your Creator Toolkit</div>", unsafe_allow_html=True)
+st.markdown(
+    "<div class='subheading'>Effortlessly find trends, optimize your videos, and connect with your audience like never before.</div>",
+    unsafe_allow_html=True,
+)
+
 # Input Section
 youtube_link = st.text_input(
     "Insert your YouTube link here:",
@@ -81,13 +88,6 @@ if st.button("Generate Tags"):
         st.success("Uploading and analyzing your video...")
     else:
         st.error("Please provide a YouTube link or upload a video.")
-
-# HEADER SECTION
-st.markdown("<div class='headline'>RippleXp: Your Creator Toolkit</div>", unsafe_allow_html=True)
-st.markdown(
-    "<div class='subheading'>Effortlessly find trends, optimize your videos, and connect with your audience like never before.</div>",
-    unsafe_allow_html=True,
-)
 
 # TRENDING TAGS SECTION
 st.markdown("### 🌟 Trending Tags: What's Hot Right Now")
