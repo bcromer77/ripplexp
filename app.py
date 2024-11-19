@@ -46,17 +46,17 @@ st.markdown("""
     }
     .trending-tags-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr); /* Create a 4-column grid */
+        grid-template-columns: repeat(5, 1fr); /* Create a 5-column grid */
         gap: 15px;
         justify-items: center;
         margin: 20px auto;
     }
     .tag-button {
         display: inline-block;
-        padding: 10px 15px;
+        padding: 10px 20px;
         color: white;
         font-weight: bold;
-        border-radius: 25px;
+        border-radius: 50px; /* Fully rounded for pill shape */
         text-align: center;
         font-size: 1rem;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
