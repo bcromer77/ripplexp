@@ -28,7 +28,8 @@ st.markdown(
             margin: 30px auto;
         }
         .video-frame {
-            width: 45%;
+            flex: 1;
+            max-width: 45%;
         }
         .grid-container {
             display: grid;
