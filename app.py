@@ -37,7 +37,7 @@ st.markdown(
     }
     .cta-button {
         background: white;
-        border: 3px solid #ff648c;
+        border: 4px solid #ff648c;
         color: #ff648c;
         font-size: 1.4rem;
         font-weight: bold;
@@ -46,6 +46,7 @@ st.markdown(
         cursor: pointer;
         transition: all 0.3s ease;
         text-align: center;
+        margin-right: 20px;
     }
     .cta-button:hover {
         background: #ff648c;
@@ -77,10 +78,12 @@ st.markdown(
         background-color: #fff;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     }
-    .button-container {
+    .input-button-container {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
+        align-items: center;
         margin-top: 20px;
+        padding: 0 15px;
     }
     </style>
     """,
@@ -104,20 +107,19 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Input Section
-youtube_link = st.text_input(
-    "Insert your YouTube link here:",
-    placeholder="e.g., https://www.youtube.com/watch?v=example123",
-    help="Paste your video link here to analyze content.",
-)
-
-# Upload Section
-uploaded_file = st.file_uploader("Or upload your video file", type=["mp4", "mov", "avi"])
-
-# Enhanced "Find Your Audience" Button on the Right
-st.markdown("<div class='button-container'>", unsafe_allow_html=True)
-if st.button("Find Your Audience", key="find_audience"):
-    st.success("Audience analysis is coming soon!")
+# Input Section with Button Aligned to the Right
+st.markdown("<div class='input-button-container'>", unsafe_allow_html=True)
+col1, col2 = st.columns([4, 1])  # Adjust column widths
+with col1:
+    youtube_link = st.text_input(
+        "Insert your YouTube link here:",
+        placeholder="e.g., https://www.youtube.com/watch?v=example123",
+        help="Paste your video link here to analyze content.",
+    )
+    uploaded_file = st.file_uploader("Or upload your video file", type=["mp4", "mov", "avi"])
+with col2:
+    if st.button("Find Your Audience", key="find_audience"):
+        st.success("Audience analysis is coming soon!")
 st.markdown("</div>", unsafe_allow_html=True)
 
 # TRENDING TAGS SECTION
