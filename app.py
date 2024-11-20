@@ -83,6 +83,13 @@ st.markdown(
         from { text-shadow: 0 0 10px #ff89a0; }
         to { text-shadow: 0 0 20px #ff648c; }
     }
+    .coming-soon {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #ff648c;
+        font-weight: bold;
+        margin: 20px 0;
+    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -133,18 +140,10 @@ for idx, tag in enumerate(tags):
     with cols[idx % 5]:  # Place each tag in the appropriate column
         st.markdown(f"<div class='tag'>{tag}</div>", unsafe_allow_html=True)
 
-# VIDEO ANALYSIS SECTION
-st.markdown("### 🎥 Discover Tools & Trends")
-videos = ["https://www.youtube.com/embed/k7XG0zPLF5I", "https://www.youtube.com/embed/3eXT60rbBVk"]
-cols = st.columns(2)  # Videos side by side
-for idx, video in enumerate(videos):
-    with cols[idx]:
-        st.markdown(
-            f"<iframe width='100%' height='300' src='{video}' frameborder='0' allowfullscreen></iframe>",
-            unsafe_allow_html=True,
-        )
+# PLACEHOLDER FOR RIPPLEXN INSIGHTS
+st.markdown("<div class='coming-soon'>🚀 RippleXn Insights Coming Soon! Stay tuned for real-time audience analytics.</div>", unsafe_allow_html=True)
 
-# CALL TO ACTION
+# Final Call to Action
 st.markdown("<div style='text-align:center; margin-top:30px;'>", unsafe_allow_html=True)
 st.markdown("<button class='cta-button'>Get Started Free</button>", unsafe_allow_html=True)
 st.markdown("</div>", unsafe_allow_html=True)
