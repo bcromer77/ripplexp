@@ -25,10 +25,9 @@ st.markdown(
         font-size: 3.5rem;
         font-weight: bold;
         text-align: center;
-        background: linear-gradient(90deg, #ff89a0, #ff648c);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: glow 2s infinite alternate;
+        color: #ff89a0;
+        text-shadow: 2px 2px 4px rgba(255, 137, 160, 0.5);
+        margin-bottom: 10px;
     }
     .subheading {
         font-size: 1.5rem;
@@ -42,14 +41,16 @@ st.markdown(
         border: none;
         color: white;
         font-size: 1.2rem;
-        padding: 14px 30px;
+        padding: 14px 40px;
         border-radius: 50px;
         cursor: pointer;
         transition: all 0.4s ease;
+        display: inline-block;
+        margin-top: 20px;
     }
     .cta-button:hover {
-        transform: translateY(-5px);
-        box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
     }
     .tag {
         text-align: center;
@@ -78,10 +79,6 @@ st.markdown(
         padding: 10px 20px;
         background-color: #fff;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    @keyframes glow {
-        from { text-shadow: 0 0 10px #ff89a0; }
-        to { text-shadow: 0 0 20px #ff648c; }
     }
     .coming-soon {
         text-align: center;
@@ -122,9 +119,9 @@ youtube_link = st.text_input(
 # Upload Section
 uploaded_file = st.file_uploader("Or upload your video file", type=["mp4", "mov", "avi"])
 
-# "Find Your Audience" Button
+# Enhanced "Find Your Audience" Button
 st.markdown("<div style='text-align:center; margin-top:20px;'>", unsafe_allow_html=True)
-if st.button("Find your Audience", key="find_audience"):
+if st.button("Find Your Audience", key="find_audience"):
     st.success("Audience analysis is coming soon!")
 
 # TRENDING TAGS SECTION
@@ -142,9 +139,4 @@ for idx, tag in enumerate(tags):
 
 # PLACEHOLDER FOR RIPPLEXN INSIGHTS
 st.markdown("<div class='coming-soon'>🚀 RippleXn Insights Coming Soon! Stay tuned for real-time audience analytics.</div>", unsafe_allow_html=True)
-
-# Final Call to Action
-st.markdown("<div style='text-align:center; margin-top:30px;'>", unsafe_allow_html=True)
-st.markdown("<button class='cta-button'>Get Started Free</button>", unsafe_allow_html=True)
-st.markdown("</div>", unsafe_allow_html=True)
 
