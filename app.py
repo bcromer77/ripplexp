@@ -1,7 +1,7 @@
 import streamlit as st
 
 # PAGE CONFIGURATION
-st.set_page_config(page_title="RippleXp: Your Creator Toolkit", layout="wide")
+st.set_page_config(page_title="You have made made your video, now find your audience", layout="wide")
 
 # GLOBAL STYLES
 st.markdown(
