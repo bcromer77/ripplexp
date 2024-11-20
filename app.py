@@ -7,46 +7,49 @@ st.set_page_config(page_title="You've made your video, now grow your audience", 
 st.markdown(
     """
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap');
+    
     body {
-        background-color: #fff8f8;
+        background: linear-gradient(180deg, #fff8f8, #ffeaea);
         font-family: 'Inter', sans-serif;
     }
     .logo {
         font-family: 'Playfair Display', serif;
-        font-size: 2.5rem;
+        font-size: 3rem;
         font-weight: bold;
         color: #ff89a0;
         margin: 0;
         padding: 0;
     }
     .headline {
-        font-size: 3rem;
+        font-size: 3.5rem;
         font-weight: bold;
-        color: #ff89a0;
         text-align: center;
-        margin-top: 20px;
+        background: linear-gradient(90deg, #ff89a0, #ff648c);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: glow 2s infinite alternate;
     }
     .subheading {
-        font-size: 1.2rem;
-        color: #444444;
+        font-size: 1.5rem;
+        color: #555555;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
     }
     .cta-button {
-        background: linear-gradient(90deg, #ff89a0, #fcaeae);
+        background: linear-gradient(90deg, #ff89a0, #ff648c);
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         border: none;
         color: white;
         font-size: 1.2rem;
-        padding: 12px 25px;
-        border-radius: 8px;
+        padding: 14px 30px;
+        border-radius: 50px;
         cursor: pointer;
-        text-align: center;
-        transition: all 0.3s ease;
+        transition: all 0.4s ease;
     }
     .cta-button:hover {
-        background: linear-gradient(90deg, #fcaeae, #ff89a0);
-        transform: scale(1.05);
+        transform: translateY(-5px);
+        box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
     }
     .tag {
         text-align: center;
@@ -75,6 +78,10 @@ st.markdown(
         padding: 10px 20px;
         background-color: #fff;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #ff89a0; }
+        to { text-shadow: 0 0 20px #ff648c; }
     }
     </style>
     """,
@@ -110,8 +117,8 @@ uploaded_file = st.file_uploader("Or upload your video file", type=["mp4", "mov"
 
 # "Find Your Audience" Button
 st.markdown("<div style='text-align:center; margin-top:20px;'>", unsafe_allow_html=True)
-st.markdown("<button class='cta-button'>Find your Audience</button>", unsafe_allow_html=True)
-st.markdown("</div>", unsafe_allow_html=True)
+if st.button("Find your Audience", key="find_audience"):
+    st.success("Audience analysis is coming soon!")
 
 # TRENDING TAGS SECTION
 st.markdown("### 🌟 Trending Tags: What's Hot Right Now")
