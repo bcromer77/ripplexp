@@ -81,9 +81,9 @@ youtube_link = st.text_input(
 # Upload Section
 uploaded_file = st.file_uploader("Or upload your video file", type=["mp4", "mov", "avi"])
 
-# "Get Started Free" Button
+# "Find you Audience" Button
 st.markdown("<div style='text-align:center; margin-top:20px;'>", unsafe_allow_html=True)
-st.markdown("<button class='cta-button'>Get Started Free</button>", unsafe_allow_html=True)
+st.markdown("<button class='cta-button'>Find your Audience</button>", unsafe_allow_html=True)
 st.markdown("</div>", unsafe_allow_html=True)
 
 # TRENDING TAGS SECTION
