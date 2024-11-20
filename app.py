@@ -65,9 +65,9 @@ st.markdown(
 )
 
 # HEADER SECTION
-st.markdown("<div class='headline'>RippleXp: Your Creator Toolkit</div>", unsafe_allow_html=True)
+st.markdown("<div class='headline'>You have made made your video, now find your audience</div>", unsafe_allow_html=True)
 st.markdown(
-    "<div class='subheading'>Effortlessly find trends, optimize your videos, and connect with your audience like never before.</div>",
+    "<div class='subheading'>Tags and handles to magnify your Ripple.</div>",
     unsafe_allow_html=True,
 )
 
