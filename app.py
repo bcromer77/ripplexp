@@ -105,7 +105,7 @@ st.markdown(
 # HEADER SECTION
 st.markdown("<div class='headline'>You've made your video, now grow your audience</div>", unsafe_allow_html=True)
 st.markdown(
-    "<div class='subheading'>Discover trending tags, audience insights, and tools to amplify your reach.</div>",
+    "<div class='subheading'>Tags and handles to magnify your Ripple.</div>",
     unsafe_allow_html=True,
 )
 
