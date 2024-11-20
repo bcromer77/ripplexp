@@ -26,31 +26,33 @@ st.markdown(
         font-weight: bold;
         text-align: center;
         color: #ff89a0;
-        text-shadow: 2px 2px 4px rgba(255, 137, 160, 0.5);
         margin-bottom: 10px;
+        line-height: 1.2;
     }
     .subheading {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         color: #555555;
         text-align: center;
         margin-bottom: 40px;
     }
     .cta-button {
-        background: linear-gradient(90deg, #ff89a0, #ff648c);
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        border: none;
-        color: white;
-        font-size: 1.2rem;
-        padding: 14px 40px;
+        background: white;
+        border: 3px solid #ff648c;
+        color: #ff648c;
+        font-size: 1.4rem;
+        font-weight: bold;
+        padding: 12px 30px;
         border-radius: 50px;
         cursor: pointer;
-        transition: all 0.4s ease;
+        transition: all 0.3s ease;
         display: inline-block;
-        margin-top: 20px;
+        text-align: center;
     }
     .cta-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+        background: #ff648c;
+        color: white;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+        transform: scale(1.05);
     }
     .tag {
         text-align: center;
@@ -68,10 +70,6 @@ st.markdown(
         color: white;
         transform: scale(1.05);
     }
-    iframe {
-        border-radius: 10px;
-        margin: 10px 0;
-    }
     .top-bar {
         display: flex;
         justify-content: space-between;
@@ -80,12 +78,11 @@ st.markdown(
         background-color: #fff;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     }
-    .coming-soon {
-        text-align: center;
-        font-size: 1.2rem;
-        color: #ff648c;
-        font-weight: bold;
+    .button-container {
+        display: flex;
+        justify-content: flex-end;
         margin: 20px 0;
+        padding-right: 15px;
     }
     </style>
     """,
@@ -120,9 +117,10 @@ youtube_link = st.text_input(
 uploaded_file = st.file_uploader("Or upload your video file", type=["mp4", "mov", "avi"])
 
 # Enhanced "Find Your Audience" Button
-st.markdown("<div style='text-align:center; margin-top:20px;'>", unsafe_allow_html=True)
+st.markdown("<div class='button-container'>", unsafe_allow_html=True)
 if st.button("Find Your Audience", key="find_audience"):
     st.success("Audience analysis is coming soon!")
+st.markdown("</div>", unsafe_allow_html=True)
 
 # TRENDING TAGS SECTION
 st.markdown("### 🌟 Trending Tags: What's Hot Right Now")
