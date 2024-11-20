@@ -45,7 +45,6 @@ st.markdown(
         border-radius: 50px;
         cursor: pointer;
         transition: all 0.3s ease;
-        display: inline-block;
         text-align: center;
     }
     .cta-button:hover {
@@ -81,8 +80,7 @@ st.markdown(
     .button-container {
         display: flex;
         justify-content: flex-end;
-        margin: 20px 0;
-        padding-right: 15px;
+        margin-top: 20px;
     }
     </style>
     """,
@@ -116,7 +114,7 @@ youtube_link = st.text_input(
 # Upload Section
 uploaded_file = st.file_uploader("Or upload your video file", type=["mp4", "mov", "avi"])
 
-# Enhanced "Find Your Audience" Button
+# Enhanced "Find Your Audience" Button on the Right
 st.markdown("<div class='button-container'>", unsafe_allow_html=True)
 if st.button("Find Your Audience", key="find_audience"):
     st.success("Audience analysis is coming soon!")
